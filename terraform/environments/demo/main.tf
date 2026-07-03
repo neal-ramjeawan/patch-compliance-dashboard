@@ -27,13 +27,13 @@ module "dynamodb" {
 }
 
 module "lambda" {
-  source                = "../../modules/lambda"
-  function_name         = "${var.project_name}-collector"
-  table_name            = module.dynamodb.table_name
-  table_arn             = module.dynamodb.table_arn
-  use_mock_data         = var.use_mock_data
-  placeholder_zip_path  = "${path.module}/placeholder.zip"
-  tags                  = local.tags
+  source               = "../../modules/lambda"
+  function_name        = "${var.project_name}-collector"
+  table_name           = module.dynamodb.table_name
+  table_arn            = module.dynamodb.table_arn
+  use_mock_data        = var.use_mock_data
+  placeholder_zip_path = "${path.module}/placeholder.zip"
+  tags                 = local.tags
 }
 
 module "eventbridge" {
