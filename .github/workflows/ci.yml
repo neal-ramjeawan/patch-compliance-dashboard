@@ -1,0 +1,44 @@
+name: CI
+
+# Runs on every PR — no AWS credentials required, since every test uses
+# MockPatchSource / InMemoryRepository via dependency injection instead
+# of real AWS objects.
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install common package
+        run: pip install -e "./common[dev]"
+
+      - name: Lint
+        run: |
+          pip install ruff
+          ruff check common lambda app
+
+      - name: Terraform format check
+        uses: hashicorp/setup-terraform@v3
+      - run: terraform fmt -check -recursive terraform/
+
+      - name: Test common package
+        run: pytest common/tests -v
+
+      - name: Test lambda handler
+        run: |
+          pip install -r lambda/patch_collector/requirements.txt
+          pytest lambda/patch_collector/tests -v
+
+      - name: Test app
+        run: |
+          pip install -r app/requirements.txt
+          pytest app/tests -v

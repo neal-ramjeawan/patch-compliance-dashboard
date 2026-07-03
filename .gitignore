@@ -1,0 +1,25 @@
+__pycache__/
+*.pyc
+.pytest_cache/
+*.egg-info/
+build/
+dist/
+.venv/
+venv/
+
+# Terraform
+.terraform/
+*.tfstate
+*.tfstate.*
+.terraform.lock.hcl
+tfplan
+
+# Local build artifacts
+lambda.zip
+*.zip
+!terraform/environments/demo/placeholder.zip
+
+.env
+.streamlit/secrets.toml
+.localstack/
+.DS_Store

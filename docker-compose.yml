@@ -1,0 +1,13 @@
+# Local-only. Spins up LocalStack for testing the real DynamoDB code path
+# without a real AWS account. Not used in CI or production — those talk
+# to real AWS or (for tests) in-memory test doubles.
+services:
+  localstack:
+    image: localstack/localstack:3
+    ports:
+      - "4566:4566"
+    environment:
+      - SERVICES=dynamodb
+      - DEBUG=0
+    volumes:
+      - "./.localstack:/var/lib/localstack"

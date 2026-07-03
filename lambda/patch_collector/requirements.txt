@@ -1,0 +1,4 @@
+# The 'common' package (patch_domain) is installed separately during the
+# build step (see scripts/build_lambda_package.sh) since Lambda packaging
+# needs it physically copied into the deployment zip, not just referenced.
+boto3>=1.34
