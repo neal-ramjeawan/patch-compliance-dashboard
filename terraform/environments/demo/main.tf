@@ -37,10 +37,10 @@ module "lambda" {
 }
 
 module "eventbridge" {
-  source               = "../../modules/eventbridge"
-  function_name        = module.lambda.function_name
-  lambda_function_arn  = module.lambda.function_arn
-  schedule_expression  = var.schedule_expression
+  source              = "../../modules/eventbridge"
+  function_name       = module.lambda.function_name
+  lambda_function_arn = module.lambda.function_arn
+  schedule_expression = var.schedule_expression
 }
 
 module "streamlit_access" {
