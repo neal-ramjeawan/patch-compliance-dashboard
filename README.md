@@ -2,6 +2,8 @@
 
 **A cloud-native patch compliance auditing platform for mixed Windows/Linux fleets, built on AWS Systems Manager Patch Manager.**
 
+[![CI](https://github.com/neal-ramjeawan/patch-compliance-dashboard/actions/workflows/ci.yml/badge.svg)](https://github.com/neal-ramjeawan/patch-compliance-dashboard/actions/workflows/ci.yml)
+
 [Live demo](#) · [Case study](#) · [Architecture](docs/architecture.md)
 
 ![Patch Compliance Dashboard screenshot](docs/screenshot.png)
@@ -17,7 +19,9 @@ than writing brittle per-OS shell scripts, this project treats **AWS SSM
 Patch Manager** as the source of truth — it already normalizes both into
 one compliance model — and builds an auditing dashboard on top of it.
 
-It was built to demonstrate the architecture decisions under real constraints (cost,
+It was built to demonstrate, end-to-end, the kind of platform engineering
+work a Cloud/DevOps role actually involves: not just "can you write
+Python," but architecture decisions under real constraints (cost,
 ops overhead, testability) and the infrastructure to ship and run it.
 
 ## Tech stack
